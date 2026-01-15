@@ -115,11 +115,20 @@ function adjustBrightness(color, amount) {
 // Get winning topic based on rotation
 function getWinningTopic(rotation) {
     const anglePerSegment = (2 * Math.PI) / topics.length;
-    // The pointer is at the top (12 o'clock position)
-    // We need to adjust for the rotation and find which segment is at the top
-    const normalizedRotation = (rotation % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
-    const adjustedRotation = (2 * Math.PI - normalizedRotation + Math.PI / 2) % (2 * Math.PI);
-    const segmentIndex = Math.floor(adjustedRotation / anglePerSegment) % topics.length;
+    // The pointer is at the top (12 o'clock = -π/2 or 3π/2)
+    const pointerAngle = -Math.PI / 2;
+
+    // Calculate the relative angle from the current rotation to the pointer
+    let relativeAngle = pointerAngle - rotation;
+
+    // Normalize to 0 to 2π range
+    relativeAngle = relativeAngle % (2 * Math.PI);
+    if (relativeAngle < 0) {
+        relativeAngle += 2 * Math.PI;
+    }
+
+    // Find which segment this angle falls into
+    const segmentIndex = Math.floor(relativeAngle / anglePerSegment) % topics.length;
     return topics[segmentIndex];
 }
 
