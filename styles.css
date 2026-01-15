@@ -1,0 +1,185 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    text-align: center;
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    width: 100%;
+}
+
+.title {
+    color: #ff6b6b;
+    font-size: 2.5em;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    animation: titleBounce 2s ease-in-out infinite;
+}
+
+@keyframes titleBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.input-section {
+    margin-bottom: 30px;
+}
+
+.input-section label {
+    display: block;
+    font-size: 1.2em;
+    color: #4a5568;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.input-section input {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    font-size: 1.1em;
+    border: 3px solid #667eea;
+    border-radius: 10px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.input-section input:focus {
+    border-color: #ff6b6b;
+    box-shadow: 0 0 20px rgba(255, 107, 107, 0.3);
+}
+
+.wheel-container {
+    position: relative;
+    display: inline-block;
+    margin: 20px 0;
+}
+
+.wheel-pointer {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 3em;
+    color: #ff6b6b;
+    z-index: 10;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+#wheelCanvas {
+    display: block;
+    border-radius: 50%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
+                inset 0 0 30px rgba(0, 0, 0, 0.1);
+}
+
+.spin-button {
+    margin-top: 30px;
+    padding: 20px 50px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 5px 20px rgba(245, 87, 108, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.spin-button:hover:not(:disabled) {
+    transform: scale(1.05);
+    box-shadow: 0 8px 30px rgba(245, 87, 108, 0.6);
+}
+
+.spin-button:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.spin-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.result {
+    margin-top: 30px;
+    min-height: 80px;
+    font-size: 1.5em;
+    color: #2d3748;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+    display: none;
+    animation: resultPop 0.5s ease-out;
+}
+
+.result.show {
+    display: block;
+}
+
+@keyframes resultPop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.status {
+    margin-top: 15px;
+    font-size: 1em;
+    color: #4a5568;
+    min-height: 25px;
+}
+
+.status.error {
+    color: #e74c3c;
+}
+
+.status.success {
+    color: #27ae60;
+}
+
+/* Flashing animation for wheel segments */
+@keyframes flash {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+.flashing {
+    animation: flash 0.1s linear infinite;
+}
