@@ -1,5 +1,5 @@
 // Configuration
-const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE'; // Replace with your Google Apps Script URL
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxkdlzym8mp53HG8ZC78dWVAQXqNGouHfi92uCPSfPYIpe3HvxJpMV0timLAu8ofMZQyA/exec';
 
 const topics = [
     "feature scaffolding",
